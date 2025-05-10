@@ -1,0 +1,98 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 214 100% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 221 83% 40%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 25 90% 53%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 217 91% 93%;
+    --accent-foreground: 221 83% 40%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 222 84% 5%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .breathing-animation {
+    animation: breathing 4s infinite;
+  }
+
+  .mic-button {
+    @apply relative flex items-center justify-center bg-primary text-white rounded-full w-16 h-16 transition-all hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  
+  .mic-button.active {
+    @apply bg-secondary;
+  }
+  
+  .mic-button.active::before {
+    content: '';
+    @apply absolute inset-0 rounded-full;
+    animation: pulse-ring 1.5s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    @apply bg-secondary;
+  }
+
+  .typing-indicator {
+    @apply inline-block h-3 w-3 rounded-full bg-primary;
+    animation: blink 1s infinite;
+  }
+
+  .typing-indicator:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .typing-indicator:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  .language-toggle {
+    @apply px-3 py-1.5 rounded-md transition-colors;
+  }
+
+  .language-toggle.active {
+    @apply bg-primary text-white;
+  }
+}
+
+@keyframes breathing {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
